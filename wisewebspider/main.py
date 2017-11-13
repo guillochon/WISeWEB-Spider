@@ -377,22 +377,23 @@ def spider(update=False, daysago=30, name=None, path=_DIR_WISEREP, include_type=
 
         # exclude non-SN
         SNtype = target[type_idx].text
-        if ((include_type and SNtype not in include_type) or
-                (not include_type and SNtype in exclude_type)):
-            updateListsJson(SNname, list_dict['non_SN'], list_dict, path)
-            updateListsJson(SNname, list_dict['completed'], list_dict, path)
-            print('\t', SNname, 'is a', SNtype)
-            with open(_PATH + path + 'non-' + incl_type_str + '.txt', 'a') as f:
-                f.write(SNname + ' is a ' + SNtype + '\n')
-            continue
+        if not force:
+            if ((include_type and SNtype not in include_type) or
+                    (not include_type and SNtype in exclude_type)):
+                updateListsJson(SNname, list_dict['non_SN'], list_dict, path)
+                updateListsJson(SNname, list_dict['completed'], list_dict, path)
+                print('\t', SNname, 'is a', SNtype)
+                with open(_PATH + path + 'non-' + incl_type_str + '.txt', 'a') as f:
+                    f.write(SNname + ' is a ' + SNtype + '\n')
+                continue
 
-        elif SNtype == '':
-            # SNtype = 'Unspecified by WISeREP'
-            print('\tType not specified by WISeREP.',
-                  'Check the Open Supernova Catalog for type.')
-            with open(_PATH + path + 'scraper-log.txt', 'a') as f:
-                f.write('Type not specified by WISeREP.' +
-                        'Check the Open Supernova Catalog for type.')
+            elif SNtype == '':
+                # SNtype = 'Unspecified by WISeREP'
+                print('\tType not specified by WISeREP.',
+                      'Check the Open Supernova Catalog for type.')
+                with open(_PATH + path + 'scraper-log.txt', 'a') as f:
+                    f.write('Type not specified by WISeREP.' +
+                            'Check the Open Supernova Catalog for type.')
 
         # create a directory even if the SN event has no spectra.
         # find other instances of mkSNdir to revert this.
