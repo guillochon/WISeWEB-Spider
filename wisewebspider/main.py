@@ -232,6 +232,7 @@ def spider(update=False, daysago=30, name=None, path=_DIR_WISEREP, include_type=
             form['daysago'] = daysstr
         if name:
             form['name'] = name
+        form['rowslimit'] = "10000"
         browser.submit_form(form)
 
         try:
