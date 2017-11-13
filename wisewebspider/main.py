@@ -134,7 +134,7 @@ def main():
     args = parser.parse_args()
 
     spider(update=args.update, daysago=args.daysago, name=args.name,
-           path=args.path, include_type=args.include_type)
+           path=args.path, include_type=args.include_type, force=args.force)
 
     # for debugging
     # spider(update=True, daysago=30, path=_DIR_WISEREP)
