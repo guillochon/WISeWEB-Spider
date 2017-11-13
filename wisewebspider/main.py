@@ -91,6 +91,13 @@ def main():
         default=False,
         action='store_true')
     parser.add_argument(
+        '--force',
+        '-f',
+        dest='force',
+        help='Import regardless of ignore rules',
+        default=False,
+        action='store_true')
+    parser.add_argument(
         '--daysago',
         '-d',
         dest='daysago',
@@ -133,7 +140,7 @@ def main():
     # spider(update=True, daysago=30, path=_DIR_WISEREP)
 
 
-def spider(update=False, daysago=30, name=None, path=_DIR_WISEREP, include_type=[]):
+def spider(update=False, daysago=30, name=None, path=_DIR_WISEREP, include_type=[], force=False):
     start_time = time.time()
 
     incl_type_str = 'supernovae' if not include_type else '-'.join(
@@ -447,7 +454,7 @@ def spider(update=False, daysago=30, name=None, path=_DIR_WISEREP, include_type=
             children = spec.findChildren("td")
             filename = spec_link.text
             program = children[program_idx].text
-            if program in exclude_program:
+            if not force and program in exclude_program:
                 print('\tSkipping', program, 'spectrum')
                 # but still count it as public
                 num_pub_spectra += 1
