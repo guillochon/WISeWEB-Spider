@@ -37,8 +37,8 @@ _PATH = os.path.dirname(os.path.abspath(__file__))
 _ASCII_URL = "\.(flm|dat|asc|asci|ascii|txt|sp|spec|[0-9])$"
 
 # WISeREP Objects Home
-_WISEREP_OBJECTS_URL = 'http://wiserep.weizmann.ac.il/objects/list'
-_WISEREP_SPECTRA_URL = 'http://wiserep.weizmann.ac.il/spectra/list'
+_WISEREP_OBJECTS_URL = 'http://wiserep1.weizmann.ac.il/objects/list'
+_WISEREP_SPECTRA_URL = 'http://wiserep1.weizmann.ac.il/spectra/list'
 
 # list of non-supernovae to exclude
 exclude_type = [
